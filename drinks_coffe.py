@@ -2,12 +2,10 @@ import os
 import json
 import requests
 import folium
-import logging
 from geopy import distance
 from dotenv import load_dotenv
 
 load_dotenv()
-logging.basicConfig(level=logging.INFO)
 
 
 def fetch_coordinates(apikey, address):
@@ -48,6 +46,7 @@ def distances(user_coords, cafes):
         })
     return cafes_distance
 
+
 def build_map(user_coords, nearest_cafes, filename="map.html"):
     m = folium.Map(location=user_coords)
 
@@ -65,8 +64,7 @@ def build_map(user_coords, nearest_cafes, filename="map.html"):
         ).add_to(m)
 
     m.save(filename)
-    logging.info(f"Карта сохранена в файле {filename}")
-
+    
 
 def main():
     apikey = os.getenv("YANDEX_API_KEY")
