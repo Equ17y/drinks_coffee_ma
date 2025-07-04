@@ -5,8 +5,6 @@ import folium
 from geopy import distance
 from dotenv import load_dotenv
 
-load_dotenv()
-
 
 def fetch_coordinates(apikey, address):
     base_url = "https://geocode-maps.yandex.ru/1.x"
@@ -67,6 +65,7 @@ def build_map(user_coords, nearest_cafes, filename="map.html"):
     
 
 def main():
+    load_dotenv()
     apikey = os.getenv("YANDEX_API_KEY")
     location = input('Ваше местоположение: ')
     user_coords = fetch_coordinates(apikey, location)
